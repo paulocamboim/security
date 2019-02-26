@@ -67,7 +67,7 @@ $ smbmap -H 10.10.10.xxx -u 'WORKGROUP\test' -p '' -R Reports
 
 Download files that match a Regex
 ```
-$ smbmap -H 10.10.10.xxx -u 'WORKGROUP\test' -p '' -A "File.xlsm" -q  
+$ smbmap -H 10.10.10.xxx -u 'WORKGROUP\test' -p '' -R Reports -A "File.xlsm" -q  
 [+] Finding open SMB ports....
 [+] Guest SMB session established on 10.10.10.xxx...
 [+] IP: 10.10.10.xxx:445        Name: 10.10.10.xxx                                                             
