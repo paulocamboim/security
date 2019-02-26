@@ -32,17 +32,23 @@ nmap 10.11.1.X --top-ports 100
 ## Mass scan
 Very fast port scanner. It's good to use it first then target specific ports with NMAP  
 ```
-$ masscan -p1-65535,U:1-65535 10.10.10.x --rate=1000 -e tun0
+$ masscan -p1-65535,U:1-65535 10.10.10.x --rate=1000 -e tun0 | tee massscan.txt
 ```
 
--p1-65535,U:1-65535 tells masscan to scan all TCP/UDP ports
---rate=1000 scan rate = 1000 packets per second (Over 1000 will miss ports. If you're missing ports with 1000 set to 200-300)
--e tun0 tells masscan to listen on the VPN network interface for responses
+* -p1-65535,U:1-65535 tells masscan to scan all TCP/UDP ports
+* --rate=1000 scan rate = 1000 packets per second (Over 1000 will miss ports. If you're missing ports with 1000 set to 200-300)
+* -e tun0 tells masscan to listen on the VPN network interface for responses
 
 Once you have a list of valid ports from masscan, you can feed them to nmap for service enumeration. For example, if masscan finds ports 80, 443 and 3306 open, the nmap command would be:
 
 ```
 $ nmap -sV -p80,443,3306 10.10.10.x
+```
+
+Or parse the massscan result and feed to nmap directly 
+
+```
+$ nmap -p$(cat massscan.txt | grep open | cut -d " " -f 4 | cut -d "/" -f 1 | tr "\n" ",") -oN nmap.txt -sV -sC 10.10.10.125
 ```
 
 ## Nmap
