@@ -308,6 +308,5 @@ Lib is a bit like DLL, it is a library. But it is not dynamic as DLL. So lib-fil
 ## References
 
 http://compudyne.net/post08152012/
-http://www.r00tsec.com/2012/11/howto-manual-pentest-windows-cheatsheet.html
-
+https://web.archive.org/web/20141120125704/http://www.r00tsec.com/2012/11/howto-manual-pentest-windows-cheatsheet.html
 
