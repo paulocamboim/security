@@ -36,6 +36,7 @@
     * [Identifying Technology Stack](identifying-technology-stack.md)
   * [Active Information Gathering](active_information_gathering.md)
     * [Port Scanning](port_scanning.md)
+    * [Samba Enumeration](samba_enumeration.md)
 * [Vulnerability analysis](vulnerability_analysi1s.md)
   * [Non-HTTP Vulnerabilities](server-side-vulnerabilities.md)
     * [Common ports\/services and how to use them](list_of_common_ports.md)
