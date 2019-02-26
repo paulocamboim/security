@@ -856,6 +856,12 @@ exploit
 ```
 vncviewer 192.168.1.109
 ```
+## Port 5985 and 5986 - Windows Remote Management
+
+The default is Relaxed. Specifies the ports that the WinRM service will use for either HTTP or HTTPS. 
+WinRM 2.0: The default HTTP port is 5985, and the default HTTPS port is 5986. 
+Specifies the IPv4 or IPv6 addresses that listeners can use
+
 
 ### Ctr-alt-del
 
