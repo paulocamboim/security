@@ -37,6 +37,7 @@
   * [Active Information Gathering](active_information_gathering.md)
     * [Port Scanning](port_scanning.md)
     * [Samba Enumeration](samba_enumeration.md)
+    * [Microsoft SQL Server MsSQL](mssql_server.md)
 * [Vulnerability analysis](vulnerability_analysi1s.md)
   * [Non-HTTP Vulnerabilities](server-side-vulnerabilities.md)
     * [Common ports\/services and how to use them](list_of_common_ports.md)
