@@ -23,6 +23,9 @@
   * [Firewalls](firewalls.md)
   * [General tips and tricks](general_tips.md)
   * Cryptography
+  
+---
+  
 * [Recon and Information Gathering Phase](scanning.md)
   * [Passive Information Gatherig](passive_information_gatherig.md)
     * Identify IP-addresses and Subdomains
@@ -34,6 +37,9 @@
     * [Identifying People](email_harvesting.md)
     * [Search Engine Discovery](google_hacking.md)
     * [Identifying Technology Stack](identifying-technology-stack.md)
+    
+--- 
+    
   * [Active Information Gathering](active_information_gathering.md)
     * [Port Scanning](port_scanning.md)
     * [Samba Enumeration](samba_enumeration.md)
@@ -77,6 +83,9 @@
     * [Browser Vulnerabilities](browser_vulnerabilities.md)
     * HTML-Injection
   * [Automated Vulnerability Scanners](automated_vulnerability_scanners.md)
+  
+---
+
 * [Exploiting](exploiting.md)
   * [Social Engineering - Phishing](social_engineering_-_phishing.md)
   * [Default Layout of Apache on Different Versions](default_layout_apache_on_different_versiont.md)
@@ -85,6 +94,9 @@
   * [Generate Shellcode](create_shellcode.md)
   * [Editing Exploits](editing-exploits.md)
   * [Compiling windows exploits](compiling-windows-exploits.md)
+  
+---
+
 * [Post Exploitation](post_exploitation.md)
   * [Spawning Shells](spawning_shells.md)
   * [Meterpreter for Post-Exploitation](getting_meterpreter_shell.md)
