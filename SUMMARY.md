@@ -94,6 +94,7 @@
   * [Generate Shellcode](create_shellcode.md)
   * [Editing Exploits](editing-exploits.md)
   * [Compiling windows exploits](compiling-windows-exploits.md)
+  * [Buffer Overflow](buffer_overflow_bof.md)
   
 ---
 
