@@ -35,15 +35,16 @@ ShellCode for a reverse _tcp.
 
 # Finding bad chars Bad Chars
 Buffer Overlow when using string copy: 
-	- null hex code: 00 (because it flag end of the string so everything after the null byte will be ignored)
-	- 0x0D (return carriage)
-	- ax0A (line feed)
+- null hex code: 00 (because it flag end of the string so everything after the null byte will be ignored)
+- 0x0D (return carriage)
+- ax0A (line feed)
 
 Send all chars from \x00 to \xFF and manually check in the memory dump each value if it's in the correct order.
 Let's say that you look into the memory dumo and see: "\x00\x01\xB0" in this case the char after \x01 should be \x02 but we got \B0. 
 
 It means that \x02 is a bad char, remove the \x02 from the string and send it again. Repeat the process until all bad chars are gone.
 
+```
 "\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10"
 "\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f\x20"
 "\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2a\x2b\x2c\x2d\x2e\x2f\x30"
@@ -60,7 +61,7 @@ It means that \x02 is a bad char, remove the \x02 from the string and send it ag
 "\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf\xe0"
 "\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef\xf0"
 "\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff"
-
+```
 # Find modules and dlls used by a program, in this way I can try to use a DLL do JMP to my ESP
 We a looking for a DLL that was compiled without ASLR, SafeSEH, NXCompat
 !mona modules
