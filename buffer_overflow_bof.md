@@ -6,8 +6,6 @@ Tools:
 - Download Immunity Debugger and install Mona (https://github.com/corelan/mona)
 - Drop mona.py into the 'PyCommands' folder (inside the Immunity Debugger application folder).
 
-https://github.com/corelan/mona
-
 # Create unique pattern to find offset
 
 Create a unique pattern and feed the exploit with this to identify the exact position of EIP. In the example it will be create a unique string of 2700 chars
@@ -38,8 +36,7 @@ Now that we control the  EIP we can manipulate the program flow. We can make the
 
 # Size of shellcode
 Keep in mind that sometimes we need to care about the Shellcode size. 
-ShellCode for a reverse _tcp.
-350 and 400 bytes of space
+ShellCode for a reverse _tcp is about 350 and 400 bytes of space
 
 # Finding bad chars Bad Chars
 Buffer Overlow when using string copy: 
