@@ -1,6 +1,14 @@
 # Buffer overflow (BOF)
 
-This is a step-by-step exploitng a windows applciation vulnerable to BOF
+This is a step-by-step exploitng a windows application vulnerable to BOF. 
+
+Tools:
+- Download Immunity Debugger and install Mona (https://github.com/corelan/mona)
+- Drop mona.py into the 'PyCommands' folder (inside the Immunity Debugger application folder).
+
+https://github.com/corelan/mona
+
+# Create unique pattern to find offset
 
 Create a unique pattern and feed the exploit with this to identify the exact position of EIP. In the example it will be create a unique string of 2700 chars
 
@@ -64,8 +72,10 @@ It means that \x02 is a bad char, remove the \x02 from the string and send it ag
 ```
 # Find modules and dlls used by a program, in this way I can try to use a DLL do JMP to my ESP
 We a looking for a DLL that was compiled without ASLR, SafeSEH, NXCompat
+```
 !mona modules
 !mona find -s "\xff\xe4" -m slmfc.dll
+```
 
 # Finding out opcode for each instructions
 it makes easier to search inside the debugger for this instruction
