@@ -36,3 +36,9 @@ GUI
 ```
 $ apt-get install dbeaver
 ```
+
+
+# SQL Injection - Cheat Sheet
+
+https://www.gracefulsecurity.com/sql-injection-cheat-sheet-mssql/
+pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet+&cd=1&hl=en&ct=clnk&gl=ca&client=ubuntu
