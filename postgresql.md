@@ -6,6 +6,7 @@
 ## Using COPY ... TO
 
 The file content cannot have break lines. So in order to save the content correctly all break lines should be removed
+
 **decode()** returns a byte array (bytea) not a "hex string"
 
 ```
@@ -23,7 +24,7 @@ SELECT 'foo'::regproc;
 
 For Windows using DLLs
 ```
-CREATE or REPLACE function my_udf_function(text, integer) returns void as $$c:\awae.dll$$, $$my_dll_function_name$$ LANGUAGE C STRICT;
+CREATE or REPLACE function my_udf_function(text, integer) returns void as $$c:\my_dll.dll$$, $$my_dll_function_name$$ LANGUAGE C STRICT;
 ```
 
 ```
@@ -36,7 +37,9 @@ CREATE OR REPLACE FUNCTION system(cstring) RETURNS int AS '/lib/libc.so.6′, 's
 ```
 
 Delete function
-DROP function test(text,integer)
+```
+DROP function my_udf_function(text,integer)
+```
 
 # Avoiding Quotes
 
